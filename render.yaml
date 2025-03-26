@@ -3,9 +3,10 @@ services:
     name: simplifymoney-backend
     env: python
     buildCommand: |
-      apt-get update && apt-get install -y build-essential
-      pip install --upgrade pip
-      pip install --no-cache-dir -r requirements.txt
+      apt-get update && apt-get install -y build-essential python3-dev
+      python3 -m pip install --upgrade pip
+      python3 -m pip install --no-cache-dir wheel setuptools
+      python3 -m pip install --no-cache-dir -r requirements.txt
     startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
     envVars:
       - key: PYTHON_VERSION
@@ -17,4 +18,6 @@ services:
       - key: API_URL
         value: https://simplifymoney-backend.onrender.com
       - key: TORCH_HOME
-        value: /tmp/torch 
+        value: /tmp/torch
+      - key: PYTHONUNBUFFERED
+        value: 1 
