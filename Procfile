@@ -1,1 +1,2 @@
-web: streamlit run app/streamlit_app.py 
+
+web: uvicorn app.main:app --host 0.0.0.0 --port $PORT
