@@ -5,12 +5,11 @@ services:
     buildCommand: |
       apt-get update && apt-get install -y build-essential python3-dev python3-pip python3-venv
       python3 -m pip install --upgrade pip setuptools wheel
-      python3 -m pip install --no-cache-dir numpy==1.21.2
       python3 -m pip install --no-cache-dir -r requirements.txt
     startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
     envVars:
       - key: PYTHON_VERSION
-        value: 3.9.0
+        value: 3.11.0
       - key: DATABASE_URL
         fromDatabase:
           name: simplifymoney-db
@@ -22,4 +21,4 @@ services:
       - key: PYTHONUNBUFFERED
         value: 1
       - key: PIP_NO_CACHE_DIR
-        value: 1 
+        value: 1
