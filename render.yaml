@@ -3,9 +3,9 @@ services:
     name: simplifymoney-backend
     env: python
     buildCommand: |
-      apt-get update && apt-get install -y build-essential python3-dev
-      python3 -m pip install --upgrade pip
-      python3 -m pip install --no-cache-dir wheel setuptools
+      apt-get update && apt-get install -y build-essential python3-dev python3-pip python3-venv
+      python3 -m pip install --upgrade pip setuptools wheel
+      python3 -m pip install --no-cache-dir numpy==1.21.2
       python3 -m pip install --no-cache-dir -r requirements.txt
     startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
     envVars:
@@ -20,4 +20,6 @@ services:
       - key: TORCH_HOME
         value: /tmp/torch
       - key: PYTHONUNBUFFERED
+        value: 1
+      - key: PIP_NO_CACHE_DIR
         value: 1 
