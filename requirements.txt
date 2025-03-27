@@ -17,4 +17,4 @@ python-jose==3.3.0
 passlib==1.7.4
 bcrypt==3.2.0
 PyPDF2==3.0.1
-httptools --no-cache-dir
+httptools==0.6.0 --only-binary :all:
